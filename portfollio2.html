@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safa Assem Omran - Data Science Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #e73c7e 0%, #23a6d5 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 20px;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .section {
+            background: white;
+            margin: 30px 20px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-title {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #2d3748;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            border-radius: 2px;
+        }
+
+        .education, .objective {
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, #38b2ac 0%, #319795 100%);
+            padding: 20px;
+            border-radius: 15px;
+            color: white;
+        }
+
+        .skill-category h3 {
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            backdrop-filter: blur(10px);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #805ad5 0%, #6b46c1 100%);
+            color: white;
+            padding: 0;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            position: relative;
+            z-index: 2;
+            padding: 25px;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-image-placeholder {
+            font-size: 2.5em;
+            opacity: 0.8;
+        }
+
+        .project-title {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .project-date {
+            opacity: 0.8;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .project-tech {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        /* Timeline for certificates - Version 4 style */
+        .certificates {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+        }
+
+        .timeline {
+            position: relative;
+            margin-top: 60px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #38b2ac, #319795);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(56, 178, 172, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            width: calc(50% - 30px);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #38b2ac, #319795);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            color: #2d3748;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .timeline-subtitle {
+            color: #38b2ac;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .timeline-description {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .languages {
+            background: linear-gradient(135deg, #fed7e2 0%, #fbb6ce 100%);
+        }
+
+        .lang-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+        .lang-level {
+            background: #e73c7e;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                margin: 20px 10px;
+                padding: 25px;
+            }
+            
+            .contact-info {
+                gap: 15px;
+            }
+            
+            .projects-grid, .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: row !important;
+                padding-left: 50px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-marker {
+                left: 20px;
+                transform: translateX(-50%);
+            }
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float-random 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 70%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            top: 40%;
+            left: 80%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float-random {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <img class="profile-img" src="me.jpg" alt="Safa Assem Omran">
+                <h1>Safa Assem Omran</h1>
+                <p>Computer Science Student | Machine Learning Enthusiast</p>
+                <div class="contact-info">
+                    <a href="mailto:safa.assem20@gmail.com" class="contact-item">
+                        📧 safa.assem20@gmail.com
+                    </a>
+                    <a href="tel:01016310405" class="contact-item">
+                        📱 01016310405
+                    </a>
+                    <div class="contact-item">
+                        📍 Tanta, Egypt
+                    </div>
+                    <a href="https://github.com/safaAssem" target="_blank" class="contact-item">
+                        💻 GitHub
+                    </a>
+                    <a href="https://www.linkedin.com/in/safa-assem-551956265" target="_blank" class="contact-item">
+                        🔗 LinkedIn
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <section class="section objective">
+            <h2 class="section-title">About Me</h2>
+            <p>Computer Science undergraduate passionate about machine learning and data analysis. Seeking a Data Science and Machine Learning Intern role to apply my skills in Python, ML models, and data visualization tools like Power BI. Eager to grow within a dynamic team and contribute to real-world AI solutions.</p>
+        </section>
+
+        <section class="section education">
+            <h2 class="section-title">Education</h2>
+            <div style="background: rgba(255, 255, 255, 0.9); padding: 25px; border-radius: 15px; margin-bottom: 25px;">
+                <h3 style="color: #2d3748; margin-bottom: 10px;">Bachelor of Computer Science</h3>
+                <p style="color: #be185d; font-weight: bold;">Faculty of Computers and Informatics, Tanta University</p>
+                <p style="color: #4a5568;">2022 - 2026 | GPA: 3.8</p>
+                <div style="margin-top: 15px;">
+                    <strong>Relevant Coursework:</strong>
+                    <p style="margin-top: 5px;">Computer Organization and Architecture, Software Engineering, Operating Systems, Introduction in Data Bases, Computer Graphics, Open Source Software</p>
+                </div>
+            </div>
+
+            <div style="background: rgba(255, 255, 255, 0.9); padding: 25px; border-radius: 15px;">
+                <h3 style="color: #2d3748; margin-bottom: 10px;">Digital Egypt Pioneers Initiative (DEPI)</h3>
+                <p style="color: #be185d; font-weight: bold;">Microsoft Machine Learning Engineer Track</p>
+                <p style="color: #4a5568;">July 2025 - Present</p>
+                <div style="margin-top: 15px;">
+                    <strong>Training Areas:</strong>
+                    <p style="margin-top: 5px;">Azure Machine Learning, MLOps, Deep Learning, Cloud Computing, AI Model Deployment, Data Engineering</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">C#</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Libraries & Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">scikit-learn</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Keras</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Data & Visualization</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Excel</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">Seaborn</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Core Concepts</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">Deep Learning</span>
+                        <span class="skill-tag">Data Structures</span>
+                        <span class="skill-tag">OOP</span>
+                        <span class="skill-tag">Git & GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Fake or real.jpg" alt="AI Image Classification" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="project-image-placeholder" style="display: none;">🤖</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Real vs. AI-Generated Image Classification</h3>
+                        <p class="project-date">March 2025</p>
+                        <p>Developed a deep learning model to classify whether an image is real or generated by AI. Built and trained a CNN model using a labeled dataset of real and AI-generated images.</p>
+                        <div class="project-tech">Python, TensorFlow/Keras, CNN</div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Data Visualization Illusrtation.jpg" alt="Data Visualization Dashboard" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="project-image-placeholder" style="display: none;">📊</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Wuzzuf Jobs Analysis & Dashboard</h3>
+                        <p class="project-date">June 2025</p>
+                        <p>Performed data cleaning and exploratory data analysis on job listings from Wuzzuf, then created interactive visualizations and insights using Power BI.</p>
+                        <div class="project-tech">Excel, Power BI</div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Diabeties.jpg" alt="Diabetes Analysis" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="project-image-placeholder" style="display: none;">🏥</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Diabetes Analysis Project</h3>
+                        <p class="project-date">March 2025</p>
+                        <p>Developed a machine learning model that detects sentiment as Positive or Negative for diabetes-related data analysis.</p>
+                        <div class="project-tech">Machine Learning</div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Segmentation.jpg" alt="Customer Segmentation" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="project-image-placeholder" style="display: none;">🛍️</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Mall Customer Segmentation</h3>
+                        <p class="project-date">February 2025</p>
+                        <p>Used K-Means clustering algorithm to group customers of a retail store based on their purchasing behavior for targeted marketing strategies.</p>
+                        <div class="project-tech">K-Means Clustering</div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="Sarah Maroney.jpg" alt="House Price Prediction" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="project-image-placeholder" style="display: none;">🏠</div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">House Price Prediction</h3>
+                        <p class="project-date">February 2025</p>
+                        <p>Predict house prices based on various features using an Artificial Neural Network as a regressor for accurate real estate valuation.</p>
+                        <div class="project-tech">Artificial Neural Network</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section certificates">
+            <h2 class="section-title">Certificates</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Microsoft Machine Learning Engineer</h3>
+                        <div class="timeline-subtitle">DEPI • July 2025 - Present</div>
+                        <p class="timeline-description">
+                            Advanced training in Microsoft Azure Machine Learning services and cloud-based AI solutions.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Data Analysis & Visualization</h3>
+                        <div class="timeline-subtitle">Sprints • March 2025 - June 2025</div>
+                        <p class="timeline-description">
+                            Comprehensive training in data analysis techniques and visualization tools including Power BI and Excel.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Huawei AI Platform</h3>
+                        <div class="timeline-subtitle">NTI • February 2025 - March 2025</div>
+                        <p class="timeline-description">
+                            Training on Huawei's AI development platform and cloud computing services.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">AI Career Essentials</h3>
+                        <div class="timeline-subtitle">ALX • April 2024 - June 2024</div>
+                        <p class="timeline-description">
+                            Foundation course covering AI fundamentals, career paths, and industry applications.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section languages">
+            <h2 class="section-title">Languages</h2>
+            <div class="lang-item">
+                <span>Arabic</span>
+                <span class="lang-level">Native</span>
+            </div>
+            <div class="lang-item">
+                <span>English</span>
+                <span class="lang-level">Good</span>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Add smooth scrolling and interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to project cards
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05) rotateY(5deg)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1) rotateY(0deg)';
+                });
+            });
+
+            // Add typing effect to the main title
+            const title = document.querySelector('.header h1');
+            const originalText = title.textContent;
+            title.textContent = '';
+            let i = 0;
+            
+            function typeWriter() {
+                if (i < originalText.length) {
+                    title.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+            
+            setTimeout(typeWriter, 1000);
+
+            // Add scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
